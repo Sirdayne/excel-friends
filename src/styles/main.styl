@@ -1,0 +1,107 @@
+//#1867c0
+$PRIMARY_COLOR = #22252b
+$BACK_COLOR = #f4f7f6
+$APP_PADDING = 20px
+$SHADOW = 0 2px 20px 0 rgba(0,0,0,0.1)
+$RED = #f96332
+$AUTH_BACK_COLOR = #000121
+
+$FONT_1 = Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif
+$FONT_2 = Verdana, Geneva, sans-serif
+$FONT_3 = "Lucida Sans Unicode", "Lucida Grande", sans-serif
+$FONT_FAMILY = 'Muli', Tahoma, sans-serif
+
+::-webkit-scrollbar
+  width 4px
+  height 4px
+  background-color #D3DCE6
+::-webkit-scrollbar-button
+::-webkit-scrollbar-track
+  display none
+::-webkit-scrollbar-thumb
+  background-color #7d7d7d
+::-webkit-scrollbar-thumb:hover
+  background-color #525252
+
+html
+  min-height 100%
+  background $BACK_COLOR
+
+body, .el-button, .el-input__inner, .el-textarea__inner
+  font-family $FONT_FAMILY
+
+#app
+  width 100%
+  color #606266
+  background $BACK_COLOR
+  padding 20px
+  box-sizing border-box
+
+h1, h2, h3, h4, h5, h6
+  font-weight 700
+
+#forms
+  display flex
+  justify-content space-around
+
+#form-menu
+  max-width 450px
+  width 100%
+
+#form-friends
+  max-width 450px
+  width 100%
+
+.btn-remove {
+  margin-left 8px;
+}
+
+.menu, .friends
+  display flex
+  justify-content space-around
+  flex-wrap wrap
+  width 100%
+  box-sizing border-box
+  margin 20px 0
+  .menu-item, .friend
+    margin-top 20px
+    width 30%
+
+.title
+  text-align center
+  font-size 18px
+
+
+.table-container
+  overflow auto
+.table
+  width 100%
+  .table-row
+    display flex
+  .table-cell
+    border 1px solid $PRIMARY_COLOR
+    box-sizing border-box
+    padding 10px
+    width 100%
+
+.percent
+  max-width: 100px;
+  margin 0 10px;
+
+@media only screen and (max-width : 960px)
+  #form-menu, #form-friends
+    max-width none
+
+  #forms
+    flex-direction column
+
+  .menu, .friends
+    flex-direction column
+    .menu-item, .friend
+      width 100%
+
+  .table-container
+    overflow scroll
+
+  .table
+    width 1200px
