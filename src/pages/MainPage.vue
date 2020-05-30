@@ -36,16 +36,21 @@
         el-input(v-model="item.name")
 
   .table-container
-    .table(v-if="menu && menu.length > 0 && friends && friends.length > 0")
-      .table-row
+    .table(v-if="menu && menu.length > 0 && friends && friends.length > 0" :style="{ width: getTableWidth }")
+      .table-row.table-row_title
         .table-cell Наименование | Цена
         .table-cell(v-for="friend in friends" :key="friend.id") {{ friend.name }}
         .table-cell
       .table-row(v-for="row in menu" :key="row.id")
         .table-cell {{ row.name }} | {{ row.price}}
-        .table-cell(v-for="friend in friends" :key="friend.id")
-          el-checkbox(@change="updateFriendMenu($event, friend.id, row.id)")
-          span(style="margin-left: 10px;") {{ getDividedPrice(row.price, row.id) | noInfinityAndFixed }}
+        .table-cell.cursor-pointer(
+          v-for="friend in friends"
+          :key="friend.id"
+          @click="updateFriendMenu(friend, row.id)"
+          :class="isMenuInFriend(friend, row.id) ? 'check-yes' : 'check-no'"
+          )
+          span {{ isMenuInFriend(friend, row.id) ? 'Да' : 'Нет' }}
+          span(style="margin-left: 10px;") {{ isMenuInFriend(friend, row.id) ? getDividedPrice(row.price, row.id) : 0 | noInfinityAndFixed }}
         .table-cell
       .table-row
         .table-cell Итого
@@ -75,6 +80,11 @@ export default {
       menu: [],
       friends: [],
       percent: 10
+    }
+  },
+  computed: {
+    getTableWidth() {
+      return this.friends.length * 200 + 'px';
     }
   },
   methods: {
@@ -107,13 +117,16 @@ export default {
     removeFriend(friendId) {
       this.friends = this.friends.filter(item => item.id !== friendId)
     },
-    updateFriendMenu(checked, friendId, menuId) {
-      const foundFriend = this.friends.find(friend => friend.id === friendId)
-      if (checked) {
-        const foundMenu = this.menu.find(item => item.id === menuId)
-        foundFriend.menus.push(foundMenu)
+    isMenuInFriend(friend, menuId) {
+      return friend.menus.find(menu => menu.id === menuId)
+    },
+    updateFriendMenu(friend, menuId) {
+      const foundMenu = friend.menus.find(item => item.id === menuId)
+      if (foundMenu) {
+        friend.menus = friend.menus.filter(item => item.id !== menuId)
       } else {
-        foundFriend.menus = foundFriend.menus.filter(item => item.id !== menuId)
+        const menu = this.menu.find(item => item.id === menuId)
+        friend.menus.push(menu)
       }
     },
     getDividedPrice(menuPrice, menuId) {

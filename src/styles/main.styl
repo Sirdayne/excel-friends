@@ -74,10 +74,14 @@ h1, h2, h3, h4, h5, h6
 
 .table-container
   overflow auto
+  margin-bottom 20px
 .table
-  width 100%
+  min-width 100%
   .table-row
     display flex
+    &_title
+      background #001642
+      color: #fff
   .table-cell
     border 1px solid $PRIMARY_COLOR
     box-sizing border-box
@@ -87,6 +91,16 @@ h1, h2, h3, h4, h5, h6
 .percent
   max-width: 100px;
   margin 0 10px;
+
+.cursor-pointer
+  cursor pointer
+
+.check-yes
+  background orangered
+  color #fff
+
+.check-no
+  background chartreuse
 
 @media only screen and (max-width : 960px)
   #form-menu, #form-friends
@@ -99,9 +113,3 @@ h1, h2, h3, h4, h5, h6
     flex-direction column
     .menu-item, .friend
       width 100%
-
-  .table-container
-    overflow scroll
-
-  .table
-    width 1200px
