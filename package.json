@@ -16,6 +16,7 @@
     "chart.js": "^2.7.3",
     "element-ui": "^2.13.2",
     "font-awesome": "^4.7.0",
+    "html-to-image": "^0.1.1",
     "moment": "^2.22.2",
     "node-sass": "^4.13.1",
     "randomcolor": "^0.5.3",

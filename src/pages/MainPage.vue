@@ -35,7 +35,7 @@
           el-button.btn-remove(@click="removeFriend(item.id)" size="mini") удалить
         el-input(v-model="item.name")
 
-  .table-container
+  .table-container#table
     .table(v-if="menu && menu.length > 0 && friends && friends.length > 0" :style="{ width: getTableWidth }")
       .table-row.table-row_title
         .table-cell Наименование | Цена
@@ -88,6 +88,8 @@
 </template>
 
 <script>
+
+import htmlToImage from 'html-to-image';
 
 export default {
   name: 'MainPage',
@@ -179,6 +181,11 @@ export default {
         localStorage.setItem('friends', JSON.stringify(this.friends))
         localStorage.setItem('menu', JSON.stringify(this.menu))
         localStorage.setItem('percent', this.percent)
+      } else {
+        this.$message({
+          message: 'Таблица пуста!',
+          type: 'warning'
+        });
       }
       this.dialogSave = false
     },
@@ -189,7 +196,20 @@ export default {
       this.dialogLoad = false
     },
     saveImage() {
-      console.log('image!')
+      if (this.friends.length > 0 && this.menu.length > 0) {
+        htmlToImage.toPng(document.getElementById('table'))
+          .then(function (dataUrl) {
+            let link = document.createElement('a');
+            link.download = 'excelka.png';
+            link.href = dataUrl;
+            link.click();
+          });
+      } else {
+        this.$message({
+          message: 'Таблица пуста!',
+          type: 'warning'
+        });
+      }
     }
   }
 }
