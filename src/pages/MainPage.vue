@@ -64,26 +64,23 @@
         .table-cell {{ getSumTotalPercent() | noInfinityAndFixed }}
 
   el-dialog(title="Сохранить таблицу?"
-            :visible.sync="dialogSave"
-            width="30%"
-            )
+            :visible.sync="dialogSave")
     span Вы уверены что хотите перезаписать данные?
     span(slot="footer" class="dialog-footer")
       el-button(@click="dialogSave = false") Отмена
       el-button(type="primary" @click="saveToLocalStorage()") ОК
 
   el-dialog(title="Сохранить таблицу?"
-            :visible.sync="dialogLoad"
-            width="30%"
-            )
+            :visible.sync="dialogLoad")
     span Вы потеряете текущие значения в таблице.
     span(slot="footer" class="dialog-footer")
       el-button(@click="dialogLoad = false") Отмена
       el-button(type="primary" @click="loadFromLocalStorage()") ОК
 
-  el-button(@click="dialogSave = true") Сохранить таблицу
-  el-button(@click="dialogLoad = true") Загрузить таблицу
-  el-button(@click="saveImage") Сохранить картинку
+  .controls
+    el-button(@click="dialogSave = true") Сохранить таблицу
+    el-button(@click="dialogLoad = true") Загрузить таблицу
+    el-button(@click="saveImage") Сохранить картинку
 
 </template>
 

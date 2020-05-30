@@ -80,13 +80,22 @@ h1, h2, h3, h4, h5, h6
   .table-row
     display flex
     &_title
-      background #001642
-      color: #fff
+      .table-cell
+        background #001642
+        color: #fff
   .table-cell
     border 1px solid $PRIMARY_COLOR
     box-sizing border-box
     padding 10px
     width 100%
+    background rgb(245, 245, 245)
+
+  .check-yes
+    background orangered
+    color #fff
+
+  .check-no
+    background chartreuse
 
 .percent
   max-width: 100px;
@@ -95,12 +104,10 @@ h1, h2, h3, h4, h5, h6
 .cursor-pointer
   cursor pointer
 
-.check-yes
-  background orangered
-  color #fff
 
-.check-no
-  background chartreuse
+
+.el-dialog
+  width 30%
 
 @media only screen and (max-width : 960px)
   #form-menu, #form-friends
@@ -113,3 +120,9 @@ h1, h2, h3, h4, h5, h6
     flex-direction column
     .menu-item, .friend
       width 100%
+
+  .el-dialog
+    width 100%
+
+  .controls .el-button
+    margin 5px
