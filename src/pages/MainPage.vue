@@ -36,7 +36,7 @@
         el-input(v-model="item.name")
 
   .table-container#table
-    .table(v-if="menu && menu.length > 0 && friends && friends.length > 0" :style="{ width: getTableWidth }")
+    .table(v-if="menu && menu.length > 0 && friends && friends.length > 0" :style="{ width: getTableWidth + 'px'}")
       .table-row.table-row_title
         .table-cell Наименование | Цена
         .table-cell(v-for="friend in friends" :key="friend.id") {{ friend.name }}
@@ -104,7 +104,7 @@ export default {
   },
   computed: {
     getTableWidth() {
-      return this.friends.length * 200 + 'px';
+      return this.friends.length * 200 + 200;
     }
   },
   methods: {
@@ -194,8 +194,10 @@ export default {
     },
     saveImage() {
       if (this.friends.length > 0 && this.menu.length > 0) {
-        htmlToImage.toPng(document.getElementById('table'))
-          .then(function (dataUrl) {
+        const width = window.innerWidth > this.getTableWidth ? window.innerWidth : this.getTableWidth
+        console.log(width);
+        htmlToImage.toPng(document.getElementById('table'), { width })
+          .then((dataUrl) => {
             let link = document.createElement('a');
             link.download = 'excelka.png';
             link.href = dataUrl;
