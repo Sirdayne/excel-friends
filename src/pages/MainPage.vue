@@ -118,6 +118,11 @@ export default {
         this.menu.push(menuItem)
         this.menuName = ''
         this.menuPrice = 0
+      } else {
+        this.$message({
+          message: 'Заполните наименование и цену!',
+          type: 'warning'
+        });
       }
     },
     addFriend() {
@@ -129,6 +134,11 @@ export default {
         }
         this.friends.push(friendItem)
         this.friendName = ''
+      } else {
+        this.$message({
+          message: 'Заполните имя!',
+          type: 'warning'
+        });
       }
     },
     removeMenu(menuId) {
@@ -195,7 +205,6 @@ export default {
     saveImage() {
       if (this.friends.length > 0 && this.menu.length > 0) {
         const width = window.innerWidth > this.getTableWidth ? window.innerWidth : this.getTableWidth
-        console.log(width);
         htmlToImage.toPng(document.getElementById('table'), { width })
           .then((dataUrl) => {
             let link = document.createElement('a');
