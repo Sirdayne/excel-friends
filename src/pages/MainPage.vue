@@ -83,7 +83,7 @@
     .controls
       el-button(@click="dialogSave = true") Сохранить таблицу
       el-button(@click="dialogLoad = true") Загрузить таблицу
-      el-button(@click="saveImage") Сохранить картинку
+      el-button(@click="saveImage" :loading="loading") Сохранить картинку
 
 </template>
 
@@ -102,7 +102,8 @@ export default {
       friends: [],
       percent: 10,
       dialogSave: false,
-      dialogLoad: false
+      dialogLoad: false,
+      loading: false
     }
   },
   computed: {
@@ -207,6 +208,7 @@ export default {
     },
     saveImage() {
       if (this.friends.length > 0 && this.menu.length > 0) {
+        this.loading = true
         const width = window.innerWidth > this.getTableWidth ? window.innerWidth : this.getTableWidth
         htmlToImage.toPng(document.getElementById('table'), { width })
           .then((dataUrl) => {
@@ -214,7 +216,7 @@ export default {
             link.download = 'excelka.png';
             link.href = dataUrl;
             link.click();
-          });
+          }).finally(() => this.loading = false);
       } else {
         this.$message({
           message: 'Таблица пуста!',
