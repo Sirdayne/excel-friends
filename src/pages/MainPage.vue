@@ -8,7 +8,7 @@
       el-button(@click="dialogSave = false") Отмена
       el-button(type="primary" @click="saveToLocalStorage()") ОК
 
-  el-dialog(title="Сохранить таблицу?"
+  el-dialog(title="Загрузить таблицу?"
   :visible.sync="dialogLoad")
     span Вы потеряете текущие значения в таблице.
     span(slot="footer" class="dialog-footer")
