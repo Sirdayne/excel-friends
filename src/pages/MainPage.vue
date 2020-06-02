@@ -19,8 +19,8 @@
   .page-container
     #forms
       #form-menu
-        p(style="margin: 5px 5px 20px;") Добавить элемент меню:
-        el-form(label-width="120px")
+        p.sub-title Добавить элемент меню:
+        el-form(label-width="120px" label-position="top")
           el-form-item(label="Наименование")
             el-input(v-model="menuName")
           el-form-item(label="Цена")
@@ -28,8 +28,8 @@
           el-form-item
             el-button(@click="addMenu") Добавить в меню
       #form-friends
-        p(style="margin: 5px 5px 20px;") Добавить друга:
-        el-form(label-width="120px")
+        p.sub-title Добавить друга:
+        el-form(label-width="120px" label-position="top")
           el-form-item(label="Имя")
             el-input(v-model="friendName")
           el-form-item
@@ -81,8 +81,8 @@
           .table-cell {{ getSumTotalPercent() | noInfinityAndFixed }}
 
     .controls
-      el-button(@click="dialogSave = true") Сохранить таблицу
-      el-button(@click="dialogLoad = true") Загрузить таблицу
+      el-button(@click="dialogSave = true" v-if="activeControls") Сохранить таблицу
+      el-button(@click="dialogLoad = true" v-if="activeControls") Загрузить таблицу
       el-button(@click="saveImage" :loading="loading") Сохранить картинку
 
 </template>
@@ -96,20 +96,24 @@ export default {
   data() {
     return {
       menuName: '',
-      menuPrice: 0,
+      menuPrice: '',
       friendName: '',
       menu: [],
       friends: [],
       percent: 10,
       dialogSave: false,
       dialogLoad: false,
-      loading: false
+      loading: false,
+      activeControls: false
     }
   },
   computed: {
     getTableWidth() {
       return this.friends.length * 200 + 200;
     }
+  },
+  created() {
+    this.activeControls = this.$route.name === 'Save'
   },
   methods: {
     addMenu() {
@@ -121,10 +125,10 @@ export default {
         }
         this.menu.push(menuItem)
         this.menuName = ''
-        this.menuPrice = 0
+        this.menuPrice = ''
       } else {
         this.$message({
-          message: 'Заполните наименование и цену!',
+          message: 'Заполните наименование и цену',
           type: 'warning'
         });
       }
@@ -140,7 +144,7 @@ export default {
         this.friendName = ''
       } else {
         this.$message({
-          message: 'Заполните имя!',
+          message: 'Заполните имя',
           type: 'warning'
         });
       }
@@ -194,7 +198,7 @@ export default {
         localStorage.setItem('percent', this.percent)
       } else {
         this.$message({
-          message: 'Таблица пуста!',
+          message: 'Таблица пуста',
           type: 'warning'
         });
       }
@@ -219,7 +223,7 @@ export default {
           }).finally(() => this.loading = false);
       } else {
         this.$message({
-          message: 'Таблица пуста!',
+          message: 'Таблица пуста',
           type: 'warning'
         });
       }

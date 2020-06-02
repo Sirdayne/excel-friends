@@ -9,7 +9,13 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'MainPage',      component: MainPage
+      name: 'MainPage',
+      component: MainPage
+    },
+    {
+      path: '/save',
+      name: 'Save',
+      component: MainPage
     },
     {
       path: '/:page',
