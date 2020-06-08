@@ -20,17 +20,17 @@
       #form-menu
         p.sub-title Добавить элемент меню:
         el-form(label-width="120px" label-position="top")
-          el-form-item(label="Наименование")
-            el-input(v-model="menuName")
-          el-form-item(label="Цена")
-            el-input(v-model="menuPrice" type="number")
+          el-form-item
+            el-input(v-model="menuName" placeholder="Наименование")
+          el-form-item
+            el-input(v-model="menuPrice" type="number" placeholder="Цена")
           el-form-item
             el-button(@click="addMenu") Добавить в меню
       #form-friends
         p.sub-title Добавить друга:
         el-form(label-width="120px" label-position="top")
-          el-form-item(label="Имя")
-            el-input(v-model="friendName")
+          el-form-item
+            el-input(v-model="friendName" placeholder="Имя")
           el-form-item
             el-button(@click="addFriend") Добавить в таблицу
 
