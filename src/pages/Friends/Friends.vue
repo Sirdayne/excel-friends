@@ -1,15 +1,15 @@
 <template lang="pug">
-  #app
-    .main-title CheckPlz
-    router-view
+#friends Friends
 </template>
 
 <script>
 
 export default {
-  name: 'App',
+  name: 'Friends',
   data() {
-    return {}
+    return {
+      friends: []
+    }
   }
 }
 </script>

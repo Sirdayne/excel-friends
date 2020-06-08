@@ -1,5 +1,6 @@
 //#1867c0
-$PRIMARY_COLOR = #22252b
+$PRIMARY_COLOR = #463e52
+$SECONDARY_COLOR = #c9c2e1
 $BACK_COLOR = #F3F2F1
 $APP_PADDING = 20px
 $SHADOW = 0 2px 20px 0 rgba(0,0,0,0.1)
@@ -56,7 +57,7 @@ h1, h2, h3, h4, h5, h6
   box-sizing border-box
   width 100%
   padding 13px 0
-  background #217346
+  background $PRIMARY_COLOR
   color #fff
 
 #forms
@@ -93,12 +94,17 @@ h1, h2, h3, h4, h5, h6
   min-width 100%
   .table-row
     display flex
+    &_main
+      .table-cell
+        text-align center
+        background #323232
+        color #fff
     &_title
       .table-cell
-        background #001642
-        color: #fff
+        background $PRIMARY_COLOR
+        color #fff
   .table-cell
-    border 1px solid $PRIMARY_COLOR
+    border 1px solid #323232
     box-sizing border-box
     padding 10px
     width 100%
@@ -132,7 +138,7 @@ h1, h2, h3, h4, h5, h6
     .menu-item, .friend
       width 100%
 
-  .el-dialog
+  #app .el-dialog
     width 100%
 
   .controls .el-button
